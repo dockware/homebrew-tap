@@ -19,13 +19,14 @@ class DockwareCli < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://dockware.io/download/cli/linux/arm64/dockware-cli"
-      sha256 "03c5deb81505ae7ec58bee6d224da94ea19eff07c2e663b4aff15f34233ef228"
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_32_bit?
-      url "https://dockware.io/download/cli/linux/arm/dockware-cli"
-      sha256 "1fbeee7049001a0bf1e399f96ee11797ac1249c7ee91ee30e6041ca4d85683eb"
+    if Hardware::CPU.arm?
+      if Hardware::CPU.is_64_bit?
+        url "https://dockware.io/download/cli/linux/arm64/dockware-cli"
+        sha256 "03c5deb81505ae7ec58bee6d224da94ea19eff07c2e663b4aff15f34233ef228"
+      else
+        url "https://dockware.io/download/cli/linux/arm/dockware-cli"
+        sha256 "1fbeee7049001a0bf1e399f96ee11797ac1249c7ee91ee30e6041ca4d85683eb"
+      end
     end
     def install
       bin.install "dockware-cli"
